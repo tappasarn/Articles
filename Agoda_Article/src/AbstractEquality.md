@@ -147,7 +147,7 @@ After we have gone through all the rules that JavaScript use to perform *The Abs
 Let's again take a look at the meme I posted in the very beginning of this blog. Would you be able to now tell what it actually going on. 
 
 <div style="text-align:center"> 
-    <img style="width: 300px" src = "https://user-images.githubusercontent.com/11821799/43389783-bc7b3a08-9416-11e8-8e6c-0ed1cc816f50.png"/>
+    <img width="300" src = "https://user-images.githubusercontent.com/11821799/43389783-bc7b3a08-9416-11e8-8e6c-0ed1cc816f50.png"/>
 <div/>
 <div style="text-align:left"/><Br />
 
