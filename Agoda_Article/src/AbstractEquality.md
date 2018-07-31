@@ -4,7 +4,7 @@ When I first joined the world of the Web, as a newbie I was introduced to this l
 Due to the reason above JavaScript has taken it place as one of the top programming languages that people like to make a meme about its behaviour.<Br />
 This is one of many meme that I have recently shared with my beloved programmer friends
 <div style="text-align:center"> 
-    <img style="width: 300px" src = "https://user-images.githubusercontent.com/11821799/43389783-bc7b3a08-9416-11e8-8e6c-0ed1cc816f50.png"/>
+    <img width="300" src = "https://user-images.githubusercontent.com/11821799/43389783-bc7b3a08-9416-11e8-8e6c-0ed1cc816f50.png"/>
 <div/>
 <div style="text-align:left"/><Br />
 Nowadays, there is a config file call "EsLint" to keep you away from doing stupid things that you could have done. It keeps you source code secure. But it would not be such a good idea if we just take those rules for graned and stop seeking for to actual behaviour of such a syntax. <Br />
