@@ -13,7 +13,7 @@ It is true that nowadays we have got a big help from a config file called *ESLin
 ## “The Abstract Equality Comparison Algorithm”
 (yeah... it is just a cool name for "==")<Br />
  
-Not too long ago, I was reading through a JavaScript book series called You Don't Know JS, written by Kyle Simpson. There was a chapter that actually reminded me about the meme posted above. It explained about the losely equality comparison behaviour of JavaScript. So, I think it would not be a bad idea if I would make a summarize of it, and share it here.
+Not too long ago, I was reading through a JavaScript book series called You Don't Know JS, written by Kyle Simpson. There was a chapter that actually reminded me about the meme posted above. It explained about the loosely equality comparison behaviour of JavaScript. So, I think it would not be a bad idea if I would make a summarize of it, and share it here.
 
 Equality check is one amoung those things that could be done in more than a single ways, and one among the ways (believed to be evil) is often being banded by the project ESLint configuration. <Br />
 <Br />
@@ -43,20 +43,20 @@ if (!!myNullValue == false){
 <div/>
 <div style="text-align:left"/><Br />
 
-But.... we have just said that losely equlity operation does not care about the type. Why would *null* as a falsy value not equal to *false* which is also one of falsy values.<Br />
+But.... we have just said that loosely equlity operation does not care about the type. Why would *null* as a falsy value not equal to *false* which is also one of falsy values.<Br />
 <Br />
 
 ## How did that happen ?
-The main difference between losely equality and strictly equality is that the strictly equality immediately return false when the type of both operands are different, but for losely equlitym it allows the coersion to happen on one or both types of the operands until both of them ended up on the same type <Br />
+The main difference between loosely equality and strictly equality is that the strictly equality immediately return false when the type of both operands are different, but for loosely equlitym it allows the coersion to happen on one or both types of the operands until both of them ended up on the same type <Br />
 
 ## Type coersion
-let's take a look at the algorithm that losely equality perform in order to corvert operands' types. 
+let's take a look at the algorithm that loosely equality perform in order to corvert operands' types. 
 ### Reminder
 Before we get started, there some rules that you will have to keep in mind. 
 
 * NaN: In the world of JavaScript NaN is NOT equal to itself. To verify NaN,  use isNaN() or Number.isNaN().
 * Object: Object (included with arrays and functions) will be the same if they have the same reference.
-### Losely compare strings to numbers
+### Loosely compare strings to numbers
 ```js
 const x = "100";
 const y = 100;
@@ -73,7 +73,7 @@ const y = 100;
 const result = Number(x) == y;
 ```
 
-### Losely compare anything to boolean
+### Loosely compare anything to boolean
 ```js
 const x = "100";
 const y = true;
@@ -93,12 +93,12 @@ const y = true;
 const result = (x == Number(y))
 
 // Right now, we have the operation of "100" == 1
-// Since they are not in the same type, we keep converting using "Losely compare strings to numbers" rule
+// Since they are not in the same type, we keep converting using "Loosely compare strings to numbers" rule
 // Finally, we would ended up with
 const result = (100 == 1); // false
 ```
 
-As we can see, with the exaple above, it is a real danger to losely compare anything to a boolean because it is very easy to make a mistake. Since our original perception has always been "==" is just an equality operation that *does not care about type*. 
+As we can see, with the exaple above, it is a real danger to loosely compare anything to a boolean because it is very easy to make a mistake. Since our original perception has always been "==" is just an equality operation that *does not care about type*. 
 ```js
 var x = "100";
 if (x) {
@@ -116,8 +116,8 @@ if (x == true) {
 <div/>
 <div style="text-align:left"/><Br />
 
-### Losely compare null to undefined
-Null and undefined losely comparison are very simple. It could only be true if the other operand is also null or undefined
+### Loosely compare null to undefined
+Null and undefined loosely comparison are very simple. It could only be true if the other operand is also null or undefined
 ```js
 const x = null;
 const y;
@@ -126,7 +126,7 @@ const z = 0;
 const result = (x == y) // true 
 const otherResult = (x == z) // false, even z is falsy value
 ```
-This type of losely comparison might come in handy when you only want to handle null and undefined differently than other falsy values. 
+This type of loosely comparison might come in handy when you only want to handle null and undefined differently than other falsy values. 
 ```js
 // follow codes would have the same behaviour
 if (x === null || x === undefined){
@@ -138,7 +138,7 @@ if (x == null){
 }
 ```
 
-### Losely compare Object with non-object value
+### Loosely compare Object with non-object value
 In order to compare Object (also array and function) with other scalar primitive types, we need to help of ToPrimitive() abstract operation ([here to read more about ToPrimitive()](https://www.ecma-international.org/ecma-262/9.0/index.html#sec-toprimitive)). Basically, what ToPrimitive operation does is that it will take a look if the target object contains *valueOf* function as its property. If the return value of valueOf is a simple primitive value than object will be converted into that value. Else, if *toString* function is present somewhere in that object prototype chain the return value of toString() will be used as object converted value. If object, somehow, does not have the above methods anywhere in its prototype chain or both methods do not provide primitive value, *TypeError* would be thrown.
 
 ```js
@@ -152,7 +152,7 @@ y.toString() // "100" -> yes ! it is scalar primitive, it is a string !
 const result = (x == y) // true
 
 // it would simply equal to 
-const result = (100 == "100") // which matched with "Losely compare strings to numbers"
+const result = (100 == "100") // which matched with "Loosely compare strings to numbers"
 ```
 ## When It all make sense
 After we have gone through all the rules that JavaScript use to perform *The Abstract Equality Comparison*, we now have a better understanding of "how" it is actually behave. To me, it would not be truely correct to tell a JS newbie that the "==" is the equality comparison that ignore "types" of the operand. I would rather, in short, say that it is the equality comparison that allow types of the operands to be coerced until both types are matched. And, very importantly, there is a concrete algorithm to follow. <Br />
